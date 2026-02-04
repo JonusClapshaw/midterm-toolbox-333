@@ -490,6 +490,155 @@ public class ToolboxTest {
         assertThrows(IllegalArgumentException.class, () -> Toolbox.topScorer(null));
         assertThrows(IllegalArgumentException.class, () -> Toolbox.topScorer(Map.of()));
     }
-}
 
+    /*      I WANTED MORE PROBLEMS SO THE NEXT PORTION WAS QUESTION I LOOKED FOR WITH CHATGPT              */
+
+
+    @Test
+    void testFindMiddleOdd() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 2, 3, 4, 5));
+        SingleNode mid = Toolbox.findMiddle(head);
+        assertEquals(3, mid.data);
+    }
+
+    @Test
+    void testFindMiddleEven() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 2, 3, 4));
+        SingleNode mid = Toolbox.findMiddle(head);
+        assertEquals(3, mid.data);
+    }
+
+    @Test
+    void testFindMiddleSingle() {
+        SingleNode head = new SingleNode(42);
+        assertEquals(42, Toolbox.findMiddle(head).data);
+    }
+
+    @Test
+    void testFindMiddleNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.findMiddle(null));
+    }
+
+
+    @Test
+    void testRemoveDuplicatesSorted() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 1, 2, 3, 3, 3, 4));
+        Toolbox.removeDuplicatesSorted(head);
+        assertEquals(Arrays.asList(1, 2, 3, 4), head.toList());
+    }
+
+    @Test
+    void testRemoveDuplicatesNoDuplicates() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 2, 3));
+        Toolbox.removeDuplicatesSorted(head);
+        assertEquals(Arrays.asList(1, 2, 3), head.toList());
+    }
+
+    @Test
+    void testRemoveDuplicatesSingle() {
+        SingleNode head = new SingleNode(9);
+        Toolbox.removeDuplicatesSorted(head);
+        assertEquals(Arrays.asList(9), head.toList());
+    }
+
+    @Test
+    void testRemoveDuplicatesNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.removeDuplicatesSorted(null));
+    }
+
+    @Test
+    void testReverseQueue() {
+        Queue<Integer> q = new LinkedList<>(Arrays.asList(1, 2, 3, 4));
+        Toolbox.reverseQueue(q);
+        assertEquals(Arrays.asList(4, 3, 2, 1), new ArrayList<>(q));
+    }
+
+    @Test
+    void testReverseQueueSingle() {
+        Queue<Integer> q = new ArrayDeque<>(Arrays.asList(7));
+        Toolbox.reverseQueue(q);
+        assertEquals(Arrays.asList(7), new ArrayList<>(q));
+    }
+
+    @Test
+    void testReverseQueueEmpty() {
+        Queue<Integer> q = new LinkedList<>();
+        Toolbox.reverseQueue(q);
+        assertTrue(q.isEmpty());
+    }
+
+    @Test
+    void testReverseQueueNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.reverseQueue(null));
+    }
+
+    @Test
+    void testPalindromeTrue() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 2, 3, 2, 1));
+        assertTrue(Toolbox.isPalindrome(head));
+    }
+
+    @Test
+    void testPalindromeFalse() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(1, 2, 3));
+        assertFalse(Toolbox.isPalindrome(head));
+    }
+
+    @Test
+    void testPalindromeSingle() {
+        SingleNode head = new SingleNode(5);
+        assertTrue(Toolbox.isPalindrome(head));
+    }
+
+    @Test
+    void testPalindromeNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.isPalindrome(null));
+    }
+
+    @Test
+    void testMostFrequentValue() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(3, 1, 3, 2, 3, 1));
+        assertEquals(3, Toolbox.mostFrequentValue(head));
+    }
+
+    @Test
+    void testMostFrequentTieSmallestWins() {
+        SingleNode head = SingleNode.fromList(Arrays.asList(2, 2, 3, 3));
+        assertEquals(2, Toolbox.mostFrequentValue(head));
+    }
+
+    @Test
+    void testMostFrequentSingle() {
+        SingleNode head = new SingleNode(9);
+        assertEquals(9, Toolbox.mostFrequentValue(head));
+    }
+
+    @Test
+    void testMostFrequentNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.mostFrequentValue(null));
+    }
+
+    @Test
+    void testQueueSortedTrue() {
+        Queue<Integer> q = new LinkedList<>(Arrays.asList(1, 2, 3, 4));
+        assertTrue(Toolbox.isQueueSorted(q));
+    }
+
+    @Test
+    void testQueueSortedFalse() {
+        Queue<Integer> q = new LinkedList<>(Arrays.asList(1, 3, 2));
+        assertFalse(Toolbox.isQueueSorted(q));
+    }
+
+    @Test
+    void testQueueSortedSingle() {
+        Queue<Integer> q = new ArrayDeque<>(Arrays.asList(5));
+        assertTrue(Toolbox.isQueueSorted(q));
+    }
+
+    @Test
+    void testQueueSortedNull() {
+        assertThrows(IllegalArgumentException.class, () -> Toolbox.isQueueSorted(null));
+    }
+}
 

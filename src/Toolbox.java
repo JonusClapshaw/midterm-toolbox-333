@@ -328,4 +328,49 @@ public class Toolbox {
 
     return highest;
   }
+
+  /*      I WANTED MORE PROBLEMS SO THE NEXT PORTION WAS QUESTION I LOOKED FOR WITH CHATGPT              */
+
+  /*
+  Rules:
+
+    If list length is odd → return the middle
+
+    If even → return the second middle
+
+  */
+  public static SingleNode findMiddle(SingleNode head){
+    return null;
+  }
+
+  // List is sorted. Remove duplicates in place.
+
+  public static void removeDuplicatesSorted(SingleNode head){
+  }
+
+  /*
+  You may use one stack
+
+  Must reverse in-place
+   */
+  public static void reverseQueue(Queue<Integer> queue){
+
+  }
+
+  public static boolean isPalindrome(SingleNode head){
+    return false;
+  }
+
+  public static int mostFrequentValue(SingleNode head){
+    return 0;
+  }
+
+  public static boolean isQueueSorted(Queue<Integer> queue){
+    return false;
+  }
 }
+
+
+
+
+
