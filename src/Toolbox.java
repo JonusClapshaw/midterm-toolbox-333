@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -340,12 +342,45 @@ public class Toolbox {
 
   */
   public static SingleNode findMiddle(SingleNode head){
-    return null;
+    if(head == null){
+      throw new IllegalArgumentException("head cannot be empty");
+    }
+
+    SingleNode current = head;
+    int length = 0;
+    
+    while(current != null){
+      length++;
+      current = current.next;
+    }
+
+    current = head;
+
+    for(int i = 0; i < length / 2; i++){
+      current = current.next;
+    }
+
+    return current;
   }
 
   // List is sorted. Remove duplicates in place.
 
   public static void removeDuplicatesSorted(SingleNode head){
+    if(head == null){
+      throw new IllegalArgumentException("head cannot be empty");
+    }
+
+    SingleNode current = head;
+
+    while(current.next != null){
+      if(current.data == current.next.data){
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
+    }
+
+    head = current;
   }
 
   /*
@@ -354,7 +389,6 @@ public class Toolbox {
   Must reverse in-place
    */
   public static void reverseQueue(Queue<Integer> queue){
-
   }
 
   public static boolean isPalindrome(SingleNode head){
