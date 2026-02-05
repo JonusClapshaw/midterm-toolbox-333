@@ -436,16 +436,26 @@ public class Toolbox {
       throw new IllegalArgumentException("can't be null");
     }
 
+    if(head.next == null){
+      return head.data;
+    }
+
     HashMap<Integer, Integer> newStack = new HashMap<>();
     SingleNode current = head;
 
-    while(head != null){
+    while(current != null){
       int value = current.data;
-      newStack.put(value, newStack.put(value, 0) + 1);
+      newStack.put(value, newStack.getOrDefault(value, 0) + 1);
       current = current.next;
     }
 
-    int great = 0;
+     int great = 0;
+
+    for(int i : newStack.keySet()){
+      if(i > great){
+        great = newStack.get(i);
+      }
+    }
 
     return great;
   }
