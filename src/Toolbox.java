@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
+import org.junit.jupiter.params.aggregator.ArgumentAccessException;
+
 public class Toolbox {
 
   /**
@@ -389,14 +391,63 @@ public class Toolbox {
   Must reverse in-place
    */
   public static void reverseQueue(Queue<Integer> queue){
+    if(queue == null){
+      throw new IllegalArgumentException();
+    }
+    Stack<Integer> newStack = new Stack<>();
+
+    while(!queue.isEmpty()){
+      newStack.add(queue.remove());
+    }
+    while(!newStack.isEmpty()){
+      queue.add(newStack.pop());
+    }
   }
 
   public static boolean isPalindrome(SingleNode head){
-    return false;
+    if(head == null){
+      throw new IllegalArgumentException("Cant be null");
+    }
+
+    ArrayList<Integer> newStack = new ArrayList<>();
+
+    while(head != null){
+      newStack.add(head.data);
+      head = head.next;
+    }
+
+    int left = 0;
+    int right = newStack.size() - 1;
+
+    while(left < right){
+      if(newStack.indexOf(left) != newStack.indexOf(right)){
+        return false;
+      }
+      left++;
+      right--;
+    }
+
+    return true;
   }
 
   public static int mostFrequentValue(SingleNode head){
-    return 0;
+
+    if(head == null){
+      throw new IllegalArgumentException("can't be null");
+    }
+
+    HashMap<Integer, Integer> newStack = new HashMap<>();
+    SingleNode current = head;
+
+    while(head != null){
+      int value = current.data;
+      newStack.put(value, newStack.put(value, 0) + 1);
+      current = current.next;
+    }
+
+    int great = 0;
+
+    return great;
   }
 
   public static boolean isQueueSorted(Queue<Integer> queue){
