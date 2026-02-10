@@ -153,8 +153,6 @@ public class Toolbox {
       throw new IllegalArgumentException("Node and newNode cannot be null.");
     }
 
-    SingleNode current = newNode;
-
     if(node.next != null){
       newNode.next = node.next;
       node.next = newNode;
