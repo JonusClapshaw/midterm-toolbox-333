@@ -1,5 +1,7 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Toolbox {
 
@@ -14,7 +16,15 @@ public class Toolbox {
     if (head == null) {
       throw new IllegalArgumentException("Head cannot be null.");
     }
-    return -1; 
+
+    int num = 0;
+
+    while(head != null){
+      num++;
+      head = head.next;
+    }
+
+    return num; 
   }
 
   /**
@@ -28,7 +38,12 @@ public class Toolbox {
     if (head == null) {
       throw new IllegalArgumentException("Head cannot be null.");
     }
-    return null; 
+
+    while(head.next != null){
+      head = head.next;
+    }
+
+    return head; 
   }
 
   /**
@@ -42,7 +57,12 @@ public class Toolbox {
     if (tail == null) {
       throw new IllegalArgumentException("Tail cannot be null.");
     }
-    return null; 
+
+    while(tail.prev != null){
+      tail = tail.prev;
+    }
+
+    return tail; 
   }
 
   /**
@@ -56,7 +76,15 @@ public class Toolbox {
     if (head == null) {
       throw new IllegalArgumentException("Head cannot be null.");
     }
-    return null; 
+
+    SingleNode current = head;
+    HashMap<Integer, Integer> count = new HashMap<>();
+
+    while(current != null){
+      count.put(current.data, count.getOrDefault(current.data, 0) + 1);
+      current = current.next;
+    }
+    return count; 
   }
 
   /**
@@ -68,6 +96,14 @@ public class Toolbox {
   public static void removeNode(DoubleNode node) {
     if (node == null) {
       throw new IllegalArgumentException("Node cannot be null.");
+    }
+
+    if(node.next != null){
+      node.next.prev = node.prev;
+    }
+
+    if(node.prev != null){
+      node.prev.next = node.next;
     }
     
   }
@@ -84,7 +120,17 @@ public class Toolbox {
     if (head == null || n < 0) {
       throw new IllegalArgumentException("Head cannot be null and n cannot be negative.");
     }
-    return null; 
+    SingleNode current = head;
+
+    for(int i = 0; i < n; i++){
+      if(current == null){
+        return null;
+      }
+
+      current = current.next;
+    }
+
+    return current; 
   }
 
   /**
@@ -98,6 +144,9 @@ public class Toolbox {
     if (node == null || newNode == null) {
       throw new IllegalArgumentException("Node and newNode cannot be null.");
     }
+
+    newNode.next = node.next;
+    node.next = newNode;
 
   }
 
@@ -119,6 +168,16 @@ public class Toolbox {
   public static void removeGiants(SingleNode head) {
     if (head == null) {
       throw new IllegalArgumentException("Head cannot be null.");
+    }
+
+    SingleNode current = head;
+
+    while(current.next != null && current.next.next != null){
+      if(current.next.data > current.next.next.data){
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
     }
     
   }
@@ -142,7 +201,10 @@ public class Toolbox {
       if (queue == null) {
         throw new IllegalArgumentException("Queue cannot be null");
       }
-      
+
+      for(int i = 0; i < queue.size(); i++){
+        queue.add(queue.poll() * 3);
+      }
     }
 
 
@@ -167,7 +229,9 @@ public class Toolbox {
     if (queue == null || k < 0) {
       throw new IllegalArgumentException("Queue cannot be null and k cannot be negative.");
     }
-    
+    for(int i = 0; i < k; i++){
+      queue.add(queue.poll());
+    }
   }
 
   /**
@@ -189,7 +253,19 @@ public class Toolbox {
     if (input == null) {
       throw new IllegalArgumentException("Input string cannot be null.");
     }
-    return false;
+    Stack<Character> stack = new Stack<>();
+
+    for(int i = 0; i < input.length(); i++){
+      if(input.charAt(i) == '('){
+        stack.push(input.charAt(i));
+      } else if(input.charAt(i) == ')'){
+          if(stack.isEmpty()){
+            return false;
+          }
+          stack.pop();
+      }
+    }
+    return stack.isEmpty();
   }
 
   /**
@@ -217,6 +293,13 @@ public class Toolbox {
     if (scores == null || scores.isEmpty()) {
       throw new IllegalArgumentException("Scares cannot be null or empty");
     }
-    return null;
+
+    String name = "";
+    int score = 0;
+
+    for(String s : scores.keySet()){
+      
+    }
+    return name;
   }
 }
